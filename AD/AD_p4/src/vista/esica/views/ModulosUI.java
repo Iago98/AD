@@ -280,7 +280,7 @@ public abstract class ModulosUI {
 	private void clearFields() {
 		id = null;
 		btnEliminar.setEnabled(false);
-		btnGuardar.setText("A�adir");
+		btnGuardar.setText("Añadir");
 		nombreTextField.setText("");
 		cursoTextField.setText("");
 		horasTextField.setText("");

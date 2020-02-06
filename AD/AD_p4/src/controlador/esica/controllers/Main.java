@@ -28,15 +28,14 @@ public class Main {
 		e.printStackTrace();
 	}
 		Constantes.contraseña=props.getProperty("password");
-		System.out.println(props.getProperty("password"));
+		
 		Constantes.nombre=props.getProperty("name");
-		System.out.println(props.getProperty("name"));
+		
 
 		Constantes.nameDB=props.getProperty("nameDB");
-		System.out.println(props.getProperty("nameDB"));
+		
 
 		Constantes.url=props.getProperty("url");
-		System.out.println(props.getProperty("url"));
-
+ 
 } 
 	}

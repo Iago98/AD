@@ -64,9 +64,9 @@ public class ModuloFacade {
 		
 		
 		
-		s.setInt(1, modulo.getHoras());
-		s.setString(2, modulo.getNombre());
-		s.setInt(3, modulo.getCurso());
+		s.setInt(3, modulo.getHoras());
+		s.setString(1, modulo.getNombre());
+		s.setInt(2, modulo.getCurso());
 		s.setInt(4, modulo.getCiclo());
 		s.setInt(5, modulo.getId());
 		
