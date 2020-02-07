@@ -1,0 +1,5 @@
+# Documento de configuración a la base de datos
+name=oracle.jdbc.driver.OracleDriver
+url=jdbc:oracle:thin:@192.168.1.216:1521:xe
+nameDB=esica
+password=99
