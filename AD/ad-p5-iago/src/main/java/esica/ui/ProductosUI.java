@@ -11,6 +11,8 @@ public abstract class ProductosUI {
 	private static String precio;
 	private static String id = "";
 	private static String opcion;
+	private static String ruta;
+
 
 	public void initialize() {
 		do {
@@ -49,10 +51,11 @@ public abstract class ProductosUI {
 					listarProducto();
 					break;
 				case 5:
-					System.out.println("Friday");
+					ruta = JOptionPane.showInputDialog(null, "Ruta del XML a importar");
+					importarXML();
 					break;
 				case 6:
-					System.out.println("Saturday");
+					crearXML();
 					break;
 				case 7:
 					salir = false;
@@ -64,6 +67,14 @@ public abstract class ProductosUI {
 				initialize();
 			}
 		} while (opcion != null && !opcion.matches("[7]"));
+	}
+
+	public static String getRuta() {
+		return ruta;
+	}
+
+	public static void setRuta(String ruta) {
+		ProductosUI.ruta = ruta;
 	}
 
 	public static String getId() {
@@ -119,6 +130,10 @@ public abstract class ProductosUI {
 	protected abstract void eliminarProducto();
 
 	protected abstract void listarProducto();
+	protected abstract void crearXML();
+	protected abstract void importarXML();
+
+
 
 	protected abstract void listaProductoRef();
 }

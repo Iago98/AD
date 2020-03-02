@@ -7,3 +7,4 @@ public class Main {
 		mc.initialize();
 	}
 }
+

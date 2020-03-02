@@ -10,6 +10,7 @@ import javax.swing.JOptionPane;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
+import javax.xml.bind.Unmarshaller;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
@@ -22,6 +23,7 @@ import com.sun.xml.txw2.Document;
 
 import esica.controller.HibernateController;
 import esica.modelo.vo.ProductoVO;
+import esica.modelo.vo.ProductosVO;
 
 public class ProductoFacade {
 
@@ -71,25 +73,66 @@ public class ProductoFacade {
 		
 		
 	}
-	public static void escribirListaXML(ArrayList<ProductoVO> alumnosLista) throws JAXBException {
 
-		JAXBContext context = JAXBContext.newInstance(ProductoVO.class);
+	public static void escribirXml() throws JAXBException {
+		List<ProductoVO> result=recuperar();
+		ProductosVO productos = new ProductosVO();
+		ArrayList<ProductoVO> lista=new ArrayList<ProductoVO>();
+		for(int x=0;x<result.size();x++) {
+			lista.add(result.get(x));
+			
+		}
 
-		ProductoVO alumnos = new ProductoVO();
+		productos.setListaProducto(lista);
+		JAXBContext context = JAXBContext.newInstance(ProductosVO.class);
 
 		Marshaller marsh = context.createMarshaller();
 		marsh.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-		marsh.marshal(alumnos, new File("DATABASE.xml"));
+		marsh.marshal(productos, new File("Producto.xml"));
 
-	}
-	public static void escribirXml() {
-		List<ProductoVO> result=recuperar();
-		for ( int i=0; i<result.size(); i++ ) {
-		    //add the customer data to the XML document
-		    ProductoVO customer = (ProductoVO) result.get(i);
-		    doc.add(customer);
+		
+		
+		
 		}
+	public static void importarXml(String ruta) throws JAXBException {
+		
+
+			File file = new File(ruta);
+			ProductosVO productos = null;
+			if (!file.exists()) {
+				try {
+
+					file.createNewFile();
+					JAXBContext context = JAXBContext.newInstance(ProductosVO.class);
+					ProductosVO pdcto = new ProductosVO();
+
+					Marshaller marsh = context.createMarshaller();
+
+					marsh.marshal(pdcto, new File(ruta));
+
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+
+			}
+			JAXBContext context = JAXBContext.newInstance(ProductosVO.class);
+			// Objeto a serializar en XML
+
+			Unmarshaller unMarsh = context.createUnmarshaller();
+
+			productos = (ProductosVO) unMarsh.unmarshal(file);
+			ArrayList<ProductoVO> listaModulos = productos.getListaProducto();
+			List<ProductoVO>listaP= new ArrayList<ProductoVO>();
+			for(int x=0;x<listaModulos.size();x++) {
+				listaP.add(listaModulos.get(x));
+			}
+			for(int i=0;i<listaP.size();i++) {
+				addOrModProduct(listaP.get(i));
+
+			}
+		
+	}
 		 
 		
 	}
-}
+
