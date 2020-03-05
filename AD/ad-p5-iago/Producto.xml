@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<productosVO>
+    <listaProducto>
+        <cantidad>5</cantidad>
+        <descripcion>l</descripcion>
+        <nombre>l</nombre>
+        <precio>5.00</precio>
+        <referencia>l</referencia>
+    </listaProducto>
+    <listaProducto>
+        <cantidad>5</cantidad>
+        <descripcion>l</descripcion>
+        <nombre>l</nombre>
+        <precio>21.32</precio>
+        <referencia>l</referencia>
+    </listaProducto>
+    <listaProducto>
+        <cantidad>123</cantidad>
+        <descripcion>asd</descripcion>
+        <nombre>pan</nombre>
+        <precio>123.00</precio>
+        <referencia>asdasd</referencia>
+    </listaProducto>
+    <listaProducto>
+        <cantidad>100</cantidad>
+        <descripcion>laesgy</descripcion>
+        <nombre>energy</nombre>
+        <precio>6.00</precio>
+        <referencia>refff</referencia>
+    </listaProducto>
+</productosVO>

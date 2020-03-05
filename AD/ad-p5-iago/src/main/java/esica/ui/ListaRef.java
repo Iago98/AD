@@ -3,6 +3,7 @@ package esica.ui;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -22,10 +23,9 @@ public class ListaRef {
 	public ListaRef(String ref) {
 		// Frame initiallization
 		f = new JFrame();
-
+		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		// Frame Title
 		f.setTitle("Productos");
-
 		// Data to be displayed in the JTable
 
 		// Column Names
@@ -58,19 +58,27 @@ public class ListaRef {
 		JScrollPane sp = new JScrollPane(j);
 		f.add(sp);
 		// Frame Size
-		f.setSize(500, 200);
+		
 		// Frame Visible = true
 		
+		JDialog jd =  new JDialog(f);
+		f.setSize(500, 200);
 		f.setVisible(true);
+		
+		
 		
 	}
 	
 	private List<String[]> transformarListaVO(String ref) {
 		ArrayList<String[]> dam = new ArrayList<String[]>();
 		List<ProductoVO> productosLista = new ArrayList<ProductoVO>();
+		if(ref==null){
+			productosLista = ProductoFacade.recuperar();
 
-		productosLista = ProductoFacade.verProductoRefe(ref);
+		}else {
+			productosLista = ProductoFacade.verProductoRefe(ref);
 
+		}
 		for (int x = 0; x < productosLista.size(); x++) {
 			String[] arr = {"" ,productosLista.get(x).getNombre(), productosLista.get(x).getDescripcion(),
 					productosLista.get(x).getReferencia(), String.valueOf(productosLista.get(x).getCantidad()),

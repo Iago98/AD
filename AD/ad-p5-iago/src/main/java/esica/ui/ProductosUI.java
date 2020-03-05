@@ -15,6 +15,7 @@ public abstract class ProductosUI {
 
 
 	public void initialize() {
+		
 		do {
 			opcion = JOptionPane.showInputDialog("\r\n" + "1- Alta producto\r\n" + "2- Baja producto\r\n"
 					+ "3-Obtener producto por referencia \r\n" + "4-Listar productos\r\n"
@@ -22,14 +23,9 @@ public abstract class ProductosUI {
 					+ "6-Exportar productos: Exporta en un fichero XML todos los productos de la base de datos. \r\n"
 					+ "7-Salir\r\n" + "");
 			try {
+				
 				switch (Integer.valueOf(opcion)) {
 				case 1:
-//					do {
-//				        playerName =
-//				            JOptionPane.showInputDialog(message);
-//				        message = "<html><b style='color:red'>Enter Your Name:</b><br>"
-//				                + "Use letters only.";          
-//				    } while(playerName != null && !playerName.matches("[a-zA-Z]+"));
 					nombre = JOptionPane.showInputDialog(null, "Nombre del producto");
 					referencia = JOptionPane.showInputDialog(null, "Referencia del producto");
 					descripcion = JOptionPane.showInputDialog(null, "Descripcion del producto");
@@ -58,15 +54,17 @@ public abstract class ProductosUI {
 					crearXML();
 					break;
 				case 7:
-					salir = false;
 					break;
+				default:
+						JOptionPane.showMessageDialog(null, "Opcion no valida");
+						break;
 				}
 
 			} catch (Exception e) {
-				JOptionPane.showMessageDialog(null, "La opción elegida no es valida.");
+				JOptionPane.showMessageDialog(null, "Error");
 				initialize();
 			}
-		} while (opcion != null && !opcion.matches("[7]"));
+		} while (!opcion.equals("7"));
 	}
 
 	public static String getRuta() {

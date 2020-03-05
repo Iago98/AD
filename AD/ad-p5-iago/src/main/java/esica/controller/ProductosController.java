@@ -9,7 +9,6 @@ import javax.xml.bind.JAXBException;
 
 import esica.modelo.facade.ProductoFacade;
 import esica.modelo.vo.ProductoVO;
-import esica.ui.Lista;
 import esica.ui.ListaRef;
 import esica.ui.ProductosUI;
 
@@ -32,7 +31,7 @@ public class ProductosController extends ProductosUI {
 	protected void listarProducto() {
 
 		
-		Lista list= new Lista();
+		ListaRef list= new ListaRef(null);
 
 	}
 
