@@ -97,42 +97,41 @@ public class ProductoFacade {
 	public static void importarXml(String ruta) throws JAXBException {
 		
 
-			File file = new File(ruta);
-			ProductosVO productos = null;
-			if (!file.exists()) {
-				try {
+		File file = new File(ruta);
+		ProductosVO productos = null;
+		if (!file.exists()) {
+			try {
 
-					file.createNewFile();
-					JAXBContext context = JAXBContext.newInstance(ProductosVO.class);
-					ProductosVO pdcto = new ProductosVO();
+				file.createNewFile();
+				JAXBContext context = JAXBContext.newInstance(ProductosVO.class);
+				ProductosVO pdcto = new ProductosVO();
 
-					Marshaller marsh = context.createMarshaller();
+				Marshaller marsh = context.createMarshaller();
 
-					marsh.marshal(pdcto, new File(ruta));
+				marsh.marshal(pdcto, new File(ruta));
 
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-
+			} catch (IOException e) {
+				e.printStackTrace();
 			}
-			JAXBContext context = JAXBContext.newInstance(ProductosVO.class);
-			// Objeto a serializar en XML
 
-			Unmarshaller unMarsh = context.createUnmarshaller();
+		}
+		JAXBContext context = JAXBContext.newInstance(ProductosVO.class);
+		// Objeto a serializar en XML
 
-			productos = (ProductosVO) unMarsh.unmarshal(file);
-			ArrayList<ProductoVO> listaModulos = productos.getListaProducto();
-			List<ProductoVO>listaP= new ArrayList<ProductoVO>();
-			for(int x=0;x<listaModulos.size();x++) {
-				listaP.add(listaModulos.get(x));
-			}
-			for(int i=0;i<listaP.size();i++) {
-				addOrModProduct(listaP.get(i));
+		Unmarshaller unMarsh = context.createUnmarshaller();
 
-			}
-		
-	}
+		productos = (ProductosVO) unMarsh.unmarshal(file);
+		ArrayList<ProductoVO> listaModulos = productos.getListaProducto();
+		List<ProductoVO>listaP= new ArrayList<ProductoVO>();
+		for(int x=0;x<listaModulos.size();x++) {
+			listaP.add(listaModulos.get(x));
+		}
+		for(int i=0;i<listaP.size();i++) {
+			addOrModProduct(listaP.get(i));
+
+		}
+	
+}
 		 
 		
 	}
-

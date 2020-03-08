@@ -3,7 +3,6 @@ package esica.ui;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -23,9 +22,10 @@ public class ListaRef {
 	public ListaRef(String ref) {
 		// Frame initiallization
 		f = new JFrame();
-		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
 		// Frame Title
 		f.setTitle("Productos");
+
 		// Data to be displayed in the JTable
 
 		// Column Names
@@ -58,14 +58,10 @@ public class ListaRef {
 		JScrollPane sp = new JScrollPane(j);
 		f.add(sp);
 		// Frame Size
-		
+		f.setSize(500, 200);
 		// Frame Visible = true
 		
-		JDialog jd =  new JDialog(f);
-		f.setSize(500, 200);
 		f.setVisible(true);
-		
-		
 		
 	}
 	
