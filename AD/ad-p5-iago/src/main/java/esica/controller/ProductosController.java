@@ -19,10 +19,19 @@ public class ProductosController extends ProductosUI {
 		BigDecimal big = new BigDecimal(getPrecio());
 		ProductoVO producto = new ProductoVO();
 		producto.setCantidad(Integer.valueOf(getCantidad()));
+		System.out.println(Integer.valueOf(getCantidad()));
 		producto.setPrecio(big);
+		System.out.println((big));
+
 		producto.setDescripcion((getDescripcion()));
+		System.out.println(getDescripcion());
+
 		producto.setNombre(getNombre());
+		System.out.println(getNombre());
+
 		producto.setReferencia(getReferencia());
+		System.out.println(getReferencia());
+
 
 		ProductoFacade.addOrModProduct(producto);
 	}

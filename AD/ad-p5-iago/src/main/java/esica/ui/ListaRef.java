@@ -30,7 +30,7 @@ public class ListaRef {
 
 		// Column Names
 		DefaultTableModel tm = new DefaultTableModel();
-		tm.addColumn("");
+		tm.addColumn("ID");
 		tm.addColumn("Nombre");
 		tm.addColumn("Descripcion");
 		tm.addColumn("Referencia");

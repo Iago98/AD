@@ -97,11 +97,13 @@ public abstract class ProductosUI {
 							}
 
 						}
+						this.precio=String.valueOf(precio);
 
-						agregarProducto();
+						
 					} catch (Exception e) {
 						initialize();
 					}
+					agregarProducto();
 					break;
 				case 2:
 					listarProducto();
