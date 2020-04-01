@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="acise.modelo.entidad.Area" table="area">
+		<id name="id" type="integer" column="id">
+			<generator class="identity"/>
+		</id>
+		<property name="area" type="string" column="area" />
+		<set name="enunciados" cascade="all" inverse="true">
+			<key>
+				<column name="id_area"/>
+			</key>
+			<one-to-many class="acise.modelo.entidad.Enunciado"/>
+		</set>
+	</class>
+</hibernate-mapping>

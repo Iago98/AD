@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="acise.modelo.entidad.Usuario" table="usuario">
+		<id name="dni" type="string" column="dni"/>
+		<property name="clave" type="string"
+			column="clave" />
+		<set name="examenes" cascade="all" inverse="true">
+			<key>
+				<column name="dni_usuario"/>
+			</key>
+			<one-to-many class="acise.modelo.entidad.Examen"/>
+		</set>
+	</class>
+</hibernate-mapping>

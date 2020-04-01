@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="acise.modelo.entidad.Examen" table="Examen">
+		<id name="id" type="integer" column="id">
+			<generator class="identity"></generator>
+		</id>
+		<property name="nota" type="float"
+			column="nota" />
+		<property name="incorrectas" type="integer" column="incorrectas" />
+		<property name="noRespondidas" type="integer" column="noRespondidas" />
+		<property name="correctas" type="integer" column="correctas" />
+		<property name="tiempo" type="float" column="tiempo" />
+		<property name="fecha" type="date" column="fecha"/>
+		<many-to-one name="usuario">
+			<column name="dni_usuario"/>
+		</many-to-one>
+		<set name="enunciados" table="examen_enunciado" cascade="all" inverse="false">
+			<key>
+				<column name="id_examen"/>
+			</key>
+			<many-to-many column="id_enunciado" class="acise.modelo.entidad.Enunciado"></many-to-many>
+		</set>
+	</class>
+</hibernate-mapping>
