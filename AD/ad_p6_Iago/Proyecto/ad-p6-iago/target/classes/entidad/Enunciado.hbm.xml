@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="acise.modelo.entidad.Enunciado" table="enunciado">
+		<id name="id" type="integer" column="id">
+			<generator class="identity"></generator>
+		</id>
+		<property name="enunciado" type="string" column="enunciado"/>
+		<many-to-one name="area">
+			<column name="id_area"/>
+		</many-to-one>
+		<set name="respuestas" cascade="all" inverse="true">
+			<key>
+				<column name="id_enunciado"></column>
+			</key>
+			<one-to-many class="acise.modelo.entidad.Respuesta" />
+		</set>
+		<set name="examenes" table="examen_enunciado" cascade="all"
+			inverse="true">
+			<key>
+				<column name="id_enunciado"></column>
+			</key>
+			<many-to-many column="id_examen"
+				class="acise.modelo.entidad.Examen"/>
+		</set>
+		<set name="tags" table="enunciado_tag" cascade="all"
+			inverse="true">
+			<key>
+				<column name="id_enunciado"></column>
+			</key>
+			<many-to-many column="id_tag"
+				class="acise.modelo.entidad.Tag"></many-to-many>
+		</set>
+	</class>
+</hibernate-mapping>

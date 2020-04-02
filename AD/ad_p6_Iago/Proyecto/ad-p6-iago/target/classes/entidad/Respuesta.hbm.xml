@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="acise.modelo.entidad.Respuesta" table="respuesta">
+		<id name="id" type="integer" column="id">
+			<generator class="identity"></generator>
+		</id>
+		<property name="respuesta" type="string"
+			column="respuesta" />
+			<property name="correcta" type="true_false"></property>
+		<many-to-one name="enunciado">
+			<column name="id_enunciado"/>
+		</many-to-one>
+	</class>
+</hibernate-mapping>
