@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="pfc.entidad.RegistroRestaurante" table="registro_restaurante">
+		<id name="login" type="string" column="login"/>
+		<property name="nombreHosteleria" type="string"
+			column="nombre_hosteleria"/>
+			<property name="ubicacion" type="string" column="ubicacion" />
+			<property name="contrasenha" type="string"
+			column="contrasenha" />
+		<set name="menus" cascade="all" inverse="true">
+			<key>
+				<column name="login_restaurante"/>
+			</key>
+			<one-to-many class="pfc.entidad.Menu"/>
+		</set>
+	</class>
+</hibernate-mapping>

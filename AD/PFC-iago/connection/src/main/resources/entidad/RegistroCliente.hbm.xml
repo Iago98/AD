@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="pfc.entidad.RegistroCliente"
+		table="registro_cliente">
+		<id name="login" type="string" column="login" />
+		<property name="nombre" type="string" column="nombre" />
+		<property name="contrasenha" type="string"
+			column="contrasenha" />
+	</class>
+</hibernate-mapping>

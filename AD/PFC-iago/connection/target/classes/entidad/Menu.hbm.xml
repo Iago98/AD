@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="pfc.entidad.Menu" table="menu">
+		<id name="id" type="integer" column="id">
+			<generator class="increment" />
+		</id>
+		<property name="titulo" type="string" column="titulo" />
+		<property name="descripcion" type="string"
+			column="descripcion" />
+
+		<many-to-one name="restaurante">
+			<column name="login_restaurante" />
+		</many-to-one>
+	</class>
+</hibernate-mapping>
