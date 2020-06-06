@@ -2,6 +2,7 @@ package pfc.controlador;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -26,9 +27,18 @@ public class Pruebas {
 		RegistroRestaurante res= new RegistroRestaurante();
 		res.setLogin("iago_98");
 		res.setContrasenha("a9");
-		Boolean bool=AccesoDatos.isLoginRestaurante(res);
 		
-		System.out.println(bool.toString());
+		//List<Menu>menus= AccesoDatos.recuperarMenus(res);
+		
+//		for(int x=0;x<menus.size();x++) {
+//			System.out.println(menus.get(x).toString());
+//
+//		}
+		
+		
+//		Boolean bool=AccesoDatos.isLoginRestaurante(res);
+//		
+//		System.out.println(bool.toString());
 
 //		RegistroCliente reg = new RegistroCliente();
 //		

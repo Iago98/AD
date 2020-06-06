@@ -8,23 +8,22 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.swing.JOptionPane;
 
-import pfc.entidad.RegistroCliente;
+import pfc.entidad.Menu;
 import pfc.entidad.RegistroRestaurante;
 import pfc.modelo.AccesoDatos;
 
 /**
- * Servlet implementation class Login
+ * Servlet implementation class NewMenu
  */
-@WebServlet("/login")
-public class Login extends HttpServlet {
+@WebServlet("/addmenu")
+public class NewMenu extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Login() {
+    public NewMenu() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -41,39 +40,39 @@ public class Login extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		//Devuelve si las creedenciales son correctas y el tipo de Login
-		Boolean logged;
-		Boolean logged2;
-
+	
+		System.out.println("paso por aqui");
+		String titulo = request.getParameter("titulo");
+		String descripcion = request.getParameter("descripcion");
 		String login = request.getParameter("login");
-		String contra = request.getParameter("contrasenha");
-		System.out.println(login);
-		System.out.println(contra);
-
-		RegistroCliente rg = new RegistroCliente();
-		rg.setLogin(login);
-		rg.setContrasenha(contra);
-		RegistroRestaurante rgRestaurante = new RegistroRestaurante();
-		rgRestaurante.setLogin(login);
-		rgRestaurante.setContrasenha(contra);
-		logged = AccesoDatos.isLoginCliente(rg);
-		logged2 = AccesoDatos.isLoginRestaurante(rgRestaurante);
-		System.out.println(logged2.toString());
+		String id = request.getParameter("id");
+		
+		
+		Menu menu =new Menu();
+		RegistroRestaurante res= new RegistroRestaurante();
+		res.setLogin(login);
+		menu.setDescripcion(descripcion);
+		menu.setTitulo(titulo);
+		menu.setRestaurante(res);
 		PrintWriter out = response.getWriter();
 		response.setContentType("application/json");
 		response.setCharacterEncoding("UTF-8");
-		if (logged == true) {
-			out.print("true-cliente");
-		} else if (logged == false) {
-			logged = AccesoDatos.isLoginRestaurante(rgRestaurante);
-			if (logged2 == true) {
-				out.print("true-restaurante");
-			} else {
-				out.print("false-null");
+		try {
+			if(id.equals("-1")) {
+				AccesoDatos.addMenu(menu);
+			}else {
+				menu.setId(Integer.valueOf(id));
+				AccesoDatos.modifyMenu(menu);
+
 			}
+		} catch (Exception e) {
+			out.print("false");
+			out.flush();
 		}
-		out.flush();	
+		out.print("true");
+		out.flush();
+
+		
 	}
 
 }

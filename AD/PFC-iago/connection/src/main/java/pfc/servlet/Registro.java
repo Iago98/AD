@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,6 +16,8 @@ import pfc.modelo.AccesoDatos;
 /**
  * Servlet implementation class Registro
  */
+@WebServlet("/registro")
+
 public class Registro extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -57,56 +60,37 @@ public class Registro extends HttpServlet {
 		System.out.println(ubicacion);
 		System.out.println(nombre);
 
-		if (tipo.equals("Restaurante")) {
-			RegistroRestaurante rgRestaurante = new RegistroRestaurante();
-			rgRestaurante.setLogin(login);
-			rgRestaurante.setContrasenha(contra);
-			rgRestaurante.setNombreHosteleria(nombre);
-			rgRestaurante.setUbicacion(ubicacion);
-			PrintWriter out = response.getWriter();
-			response.setContentType("application/json");
-			response.setCharacterEncoding("UTF-8");
-			RegistroCliente rg = new RegistroCliente();
-			rg.setLogin(login);
-			logged = AccesoDatos.existClient(rg);
-			if (logged == true) {
-				out.print("false");
+		RegistroRestaurante rgRestaurante = new RegistroRestaurante();
+		rgRestaurante.setLogin(login);
+		RegistroCliente rgCliente = new RegistroCliente();
+		rgCliente.setLogin(login);
+		logged = AccesoDatos.existRestaurant(rgRestaurante);
+		logged2 = AccesoDatos.existClient(rgCliente);
+		PrintWriter out = response.getWriter();
+		response.setContentType("application/json");
+		response.setCharacterEncoding("UTF-8");
+		if (logged || logged2) {
+			str = "false";
+			System.out.println("existe comun: "+logged.toString()+"o restaurante: "+logged2.toString());
+		} else {
 
-			} else {
-
-				// que pasa si el restaurante ya existe
+			if (tipo.equals("Restaurante")) {
+				rgRestaurante.setContrasenha(contra);
+				rgRestaurante.setNombreHosteleria(nombre);
+				rgRestaurante.setUbicacion(ubicacion);
 				AccesoDatos.addLoginRestaurante(rgRestaurante);
-				out.print("true");
-
-			}
-
-			out.flush();
-		} else if (tipo.equals("Comun")) {
-			RegistroCliente rgCliente = new RegistroCliente();
-			rgCliente.setLogin(login);
-			rgCliente.setNombre(nombre);
-			rgCliente.setContrasenha(contra);
-			RegistroRestaurante rgRestaurante = new RegistroRestaurante();
-			rgRestaurante.setLogin(login);
-			PrintWriter out = response.getWriter();
-			response.setContentType("application/json");
-			response.setCharacterEncoding("UTF-8");
-
-			logged2 = AccesoDatos.existRestaurant(rgRestaurante);
-			if (logged2 == true) {
-				out.print("false");
-
+				str = "true";
 			} else {
-
-				// que pasa si el CLIENTE ya existe
+				rgCliente.setNombre(nombre);
+				rgCliente.setContrasenha(contra);
 				AccesoDatos.addLoginCliente(rgCliente);
-				out.print("true");
+				str = "true";
 
 			}
-
-			out.flush();
 
 		}
+		out.print(str);
+		out.flush();
 
 	}
 }

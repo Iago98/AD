@@ -16,6 +16,24 @@
   	<description></description>
   	<servlet-class>pfc.servlet.Registro</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>NewMenu</servlet-name>
+  	<display-name>NewMenu</display-name>
+  	<description></description>
+  	<servlet-class>pfc.servlet.NewMenu</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>SendMenus</servlet-name>
+  	<display-name>SendMenus</display-name>
+  	<description></description>
+  	<servlet-class>pfc.servlet.SendMenus</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>RestaurantesCercanos</servlet-name>
+  	<display-name>RestaurantesCercanos</display-name>
+  	<description></description>
+  	<servlet-class>pfc.servlet.RestaurantesCercanos</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>Login</servlet-name>
   	<url-pattern>/Login</url-pattern>
@@ -23,5 +41,17 @@
   <servlet-mapping>
   	<servlet-name>Registro</servlet-name>
   	<url-pattern>/Registro</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>NewMenu</servlet-name>
+  	<url-pattern>/NewMenu</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>SendMenus</servlet-name>
+  	<url-pattern>/SendMenus</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>RestaurantesCercanos</servlet-name>
+  	<url-pattern>/RestaurantesCercanos</url-pattern>
   </servlet-mapping>
 </web-app>

@@ -2,14 +2,14 @@ package pfc.entidad;
 
 import java.io.Serializable;
 
-public class Menu implements Serializable {
+public class Menu2 implements Serializable {
 
 	private Integer id;
 	private String titulo;
 	private String descripcion;
-	private RegistroRestaurante restaurante;
 	
-	public Menu() {
+	
+	public Menu2() {
 
 	}
 
@@ -37,18 +37,10 @@ public class Menu implements Serializable {
 		this.descripcion = descripcion;
 	}
 
-	public RegistroRestaurante getRestaurante() {
-		return restaurante;
-	}
-
-	public void setRestaurante(RegistroRestaurante restaurante) {
-		this.restaurante = restaurante;
-	}
-
 	@Override
 	public String toString() {
-		return "Menu [id=" + id + ", titulo=" + titulo + ", descripcion=" + descripcion + ", restaurante=" + restaurante
-				+ "]";
+		return "Menu [id=" + id + ", titulo=" + titulo + ", descripcion=" + descripcion + ", restaurante=" + 
+				"]";
 	}
 	
 

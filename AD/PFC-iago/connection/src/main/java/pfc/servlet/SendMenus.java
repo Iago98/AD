@@ -8,23 +8,31 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.swing.JOptionPane;
 
-import pfc.entidad.RegistroCliente;
+import pfc.entidad.Menu;
+import pfc.entidad.Menu2;
 import pfc.entidad.RegistroRestaurante;
 import pfc.modelo.AccesoDatos;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 
 /**
- * Servlet implementation class Login
+ * Servlet implementation class SendMenus
  */
-@WebServlet("/login")
-public class Login extends HttpServlet {
+@WebServlet("/requestmenu")
+
+public class SendMenus extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Login() {
+    public SendMenus() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,47 +41,33 @@ public class Login extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		
+		
+		
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		//Devuelve si las creedenciales son correctas y el tipo de Login
-		Boolean logged;
-		Boolean logged2;
-
+		System.out.println("pasando menus");
 		String login = request.getParameter("login");
-		String contra = request.getParameter("contrasenha");
-		System.out.println(login);
-		System.out.println(contra);
-
-		RegistroCliente rg = new RegistroCliente();
-		rg.setLogin(login);
-		rg.setContrasenha(contra);
-		RegistroRestaurante rgRestaurante = new RegistroRestaurante();
-		rgRestaurante.setLogin(login);
-		rgRestaurante.setContrasenha(contra);
-		logged = AccesoDatos.isLoginCliente(rg);
-		logged2 = AccesoDatos.isLoginRestaurante(rgRestaurante);
-		System.out.println(logged2.toString());
+		String contra = request.getParameter("contra");
+		RegistroRestaurante res= new RegistroRestaurante();
+		res.setLogin(login);
+		res.setContrasenha(contra);
+		List<Menu2> menus= AccesoDatos.recuperarMenus(res);
+		System.out.println(menus.size());
 		PrintWriter out = response.getWriter();
 		response.setContentType("application/json");
 		response.setCharacterEncoding("UTF-8");
-		if (logged == true) {
-			out.print("true-cliente");
-		} else if (logged == false) {
-			logged = AccesoDatos.isLoginRestaurante(rgRestaurante);
-			if (logged2 == true) {
-				out.print("true-restaurante");
-			} else {
-				out.print("false-null");
-			}
-		}
+			ObjectMapper mapper = new ObjectMapper();
+	        mapper.enable(SerializationFeature.INDENT_OUTPUT);
+	        String json = mapper.writeValueAsString(menus);
+	        System.out.println(json);
+	        out.print(json);
 		out.flush();	
+
 	}
 
 }
