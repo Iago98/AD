@@ -34,6 +34,24 @@
   	<description></description>
   	<servlet-class>pfc.servlet.RestaurantesCercanos</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>deleteMenu</servlet-name>
+  	<display-name>deleteMenu</display-name>
+  	<description></description>
+  	<servlet-class>pfc.servlet.deleteMenu</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>DeleteMenu</servlet-name>
+  	<display-name>DeleteMenu</display-name>
+  	<description></description>
+  	<servlet-class>pfc.servlet.DeleteMenu</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>DeleteUser</servlet-name>
+  	<display-name>DeleteUser</display-name>
+  	<description></description>
+  	<servlet-class>pfc.servlet.DeleteUser</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>Login</servlet-name>
   	<url-pattern>/Login</url-pattern>
@@ -53,5 +71,17 @@
   <servlet-mapping>
   	<servlet-name>RestaurantesCercanos</servlet-name>
   	<url-pattern>/RestaurantesCercanos</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>deleteMenu</servlet-name>
+  	<url-pattern>/deleteMenu</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>DeleteMenu</servlet-name>
+  	<url-pattern>/DeleteMenu</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>DeleteUser</servlet-name>
+  	<url-pattern>/DeleteUser</url-pattern>
   </servlet-mapping>
 </web-app>

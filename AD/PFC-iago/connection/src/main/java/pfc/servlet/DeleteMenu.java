@@ -10,20 +10,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import pfc.entidad.Menu;
-import pfc.entidad.RegistroRestaurante;
 import pfc.modelo.AccesoDatos;
 
 /**
- * Servlet implementation class NewMenu
+ * Servlet implementation class DeleteMenu
  */
-@WebServlet("/addmenu")
-public class NewMenu extends HttpServlet {
+
+@WebServlet("/delte")
+
+public class DeleteMenu extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public NewMenu() {
+    public DeleteMenu() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -40,48 +41,22 @@ public class NewMenu extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
-		String titulo = request.getParameter("titulo");
-		String descripcion = request.getParameter("descripcion");
-		String login =request.getParameter("login");
-		String id = request.getParameter("id");
-		
-		System.out.println(titulo);
-		System.out.println(descripcion);
-
-		System.out.println(login);
-
+		int id = Integer.valueOf(request.getParameter("id"));
 		System.out.println(id);
-
-		Menu menu =new Menu();
-		RegistroRestaurante res= new RegistroRestaurante();
-		res.setLogin(login);
-		menu.setDescripcion(descripcion);
-		menu.setTitulo(titulo);
-		menu.setRestaurante(res);
+		Menu menu = new Menu();
+		menu.setId(id);
 		PrintWriter out = response.getWriter();
 		response.setContentType("application/json");
 		response.setCharacterEncoding("UTF-8");
 		try {
-			if(id.equals("-1")) {
-				AccesoDatos.addMenu(menu);
-			}else {
-				System.out.println("paso por aqui");
-
-				menu.setId(Integer.valueOf(id));
-				AccesoDatos.modifyMenu(menu);
-
-
-			}
+			AccesoDatos.eliminar(menu);
 			out.print("true");
-
 		} catch (Exception e) {
 			out.print("false");
-			out.flush();
+			out.flush();	
 		}
-		out.flush();
+		out.flush();	
 
-		
 	}
 
 }

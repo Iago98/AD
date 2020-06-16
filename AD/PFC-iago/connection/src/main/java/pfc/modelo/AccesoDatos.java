@@ -146,4 +146,20 @@ public class AccesoDatos {
 		session.close();
 		return result;
 	}
+	public static void eliminarUserComun(RegistroCliente rg) {
+		Session session = Pruebas.openHibernateSession();
+		session.beginTransaction();
+		session.remove(rg);
+		session.getTransaction().commit();
+		session.close();
+		
+	}
+	public static void eliminar(Menu menu) {
+		Session session = Pruebas.openHibernateSession();
+		session.beginTransaction();
+		session.remove(menu);
+		session.getTransaction().commit();
+		session.close();
+		
+	}
 }

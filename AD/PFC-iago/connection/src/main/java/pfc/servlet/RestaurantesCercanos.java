@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
+import pfc.entidad.Menu2;
 import pfc.entidad.MiClasePersonalizada;
 import pfc.entidad.RegistroRestaurante;
 import pfc.modelo.AccesoDatos;
@@ -56,9 +57,20 @@ public class RestaurantesCercanos extends HttpServlet {
 		String contra = request.getParameter("contra");
 		String latitude = request.getParameter("latitude");
 		String longitude = request.getParameter("longitude");
+		System.out.println("aqui login"+tipo);
+		System.out.println("aqui contra"+contra);
+		System.out.println("aqui latitude"+latitude);
+		System.out.println("aqui longitude"+longitude);
 		listaPrincipal=AccesoDatos.recuperarTodosRestaurante();
 		double distanciaFinal;
 		// ejemplo:                                     lat/lng: ( ||  42.2196095847658 || ,-8.732633516192436)
+		
+		for(int x=0;x<listaPrincipal.size();x++) {
+			List<Menu2> result=AccesoDatos.recuperarMenus(listaPrincipal.get(x));
+			if(result.isEmpty()) {
+				listaPrincipal.remove(x);
+			}
+		}
 		
 		for (int i=0;i<listaPrincipal.size();i++) {
 			String string =listaPrincipal.get(i).getUbicacion();
